@@ -9,7 +9,9 @@ import Navbar from './Components/Navbar'
 import Product from './pages/product'
 import Footer from './Components/footer'
 import SearchBar from './Components/Searchbar'
-
+import Cart from './pages/Cart'
+import PlaceOrder from './pages/PlaceOrder'
+import Orders from './pages/Orders'
 const App = () => {
   return (
     <div>
@@ -25,6 +27,10 @@ const App = () => {
 <Route path="/Contact" element={<Contact/>}  />
 
 <Route path="/product/:id" element={<Product/>}  />
+<Route path="/cart" element={<Cart/>}  />
+<Route path="/place-order" element={<PlaceOrder/>}  />
+
+<Route path="/orders" element={<Orders/>}  />
      </Routes>
      <Footer/>
 

@@ -71,10 +71,13 @@ const {display}=useContext(context);
           <CiSearch size={25} className="cursor-pointer" onClick={()=>{ setShowSearch(true)  }} />
           <CiUser size={25}className="cursor-pointer" />
           <div className="relative inline-block" >
-          <IoBagOutline size={25} className="cursor-pointer"/>
+
+
+        <Link  to={'/cart'}>  <IoBagOutline size={25} className="cursor-pointer"/>
             <span className="absolute -top-2 -right-2 bg-black text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
           {display()}
         </span>
+    </Link>
           </div>
         </div>
       </div>
