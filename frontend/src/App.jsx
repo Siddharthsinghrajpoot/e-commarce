@@ -12,6 +12,7 @@ import SearchBar from './Components/Searchbar'
 import Cart from './pages/Cart'
 import PlaceOrder from './pages/PlaceOrder'
 import Orders from './pages/Orders'
+import Singnup from './pages/Singnup'
 const App = () => {
   return (
     <div>
@@ -29,6 +30,7 @@ const App = () => {
 <Route path="/product/:id" element={<Product/>}  />
 <Route path="/cart" element={<Cart/>}  />
 <Route path="/place-order" element={<PlaceOrder/>}  />
+<Route path="/singnup" element={<Singnup/>}  />
 
 <Route path="/orders" element={<Orders/>}  />
      </Routes>

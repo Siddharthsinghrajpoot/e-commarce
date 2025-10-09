@@ -68,8 +68,12 @@ const {display}=useContext(context);
 
         {/* Icons */}
         <div className="flex items-center gap-4">
+
           <CiSearch size={25} className="cursor-pointer" onClick={()=>{ setShowSearch(true)  }} />
-          <CiUser size={25}className="cursor-pointer" />
+
+
+         <Link to={'/singnup'} ><CiUser size={25}className="cursor-pointer" /></Link> 
+
           <div className="relative inline-block" >
 
 
