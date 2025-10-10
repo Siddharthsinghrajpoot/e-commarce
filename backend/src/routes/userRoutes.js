@@ -1,6 +1,7 @@
 import express from "express"; // ← import express
 import User from "../models/userModel.js";
 import jwt from "jsonwebtoken"
+
 const JWT_SECRET="siddharth";
 const router=express.Router();
 
