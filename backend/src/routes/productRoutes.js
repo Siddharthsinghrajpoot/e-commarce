@@ -3,11 +3,12 @@ import { v2 as cloudinary } from 'cloudinary';
 
 import Product from '../models/productModel.js';
 import upload from '../middleware/multer.js';
+import adminAuth from '../middleware/adminauth.js';
 
 const routerproducts = express.Router();
 
 routerproducts.post(
-  '/add',
+  '/add',adminAuth,
   upload.fields([
     { name: 'image1', maxCount: 1 },
     { name: 'image2', maxCount: 1 },
@@ -117,5 +118,61 @@ message:"error is present"
   }
 
 })
+
+routerproducts.get('/getbyid/:id',async(req,res)=>{
+try{
+const id=req.params.id;
+
+ const response= await Product.findById(id);
+res.status(200).json({
+response
+
+})
+
+}
+
+catch(error){
+console.log(error);
+res.status(500).json({
+"message":"server error"
+
+})
+
+
+
+}
+
+
+
+})
+
+routerproducts.delete('/deletebyid/:id' ,adminAuth ,async(req,res)=>{
+try{
+const id=req.params.id;
+
+ const response= await Product.findbyidand(id);
+res.status(200).json({
+message:"product is deleted"
+
+})
+
+}
+
+catch(error){
+console.log(error);
+res.status(500).json({
+"message":"server error"
+
+})
+
+
+
+}
+
+
+
+})
+
+
 
 export default routerproducts;

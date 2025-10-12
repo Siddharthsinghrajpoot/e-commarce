@@ -4,6 +4,7 @@ import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js"
 import productRoutes from "./routes/productRoutes.js"
 import connectCloudinary from "./config/cloudinary.js";
+import adminroutes from "./routes/adminroutes.js";
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use(express.json());
 // Basic route
 app.use("/api/user",userRoutes)
 app.use("/api/products",productRoutes)
+app.use("/api/admin",adminroutes)
 
 // Connect to DB and then start server
 connectDB().then(() => {

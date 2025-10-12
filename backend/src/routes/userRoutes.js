@@ -2,7 +2,7 @@ import express from "express"; // ← import express
 import User from "../models/userModel.js";
 import jwt from "jsonwebtoken"
 
-const JWT_SECRET="siddharth";
+const JWT_SECRET=process.env.jwt_secret;
 const router=express.Router();
 
 router.get('/hello',(req,res)=>{
@@ -24,7 +24,7 @@ const password=req.body.password
     });
 
     if (existingUser) {
-      return res.status(400).json({
+      return res.status(409).json({
         message: "Username, email, or password already exists"
       });
     }
