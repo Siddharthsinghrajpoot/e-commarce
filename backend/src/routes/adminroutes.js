@@ -10,7 +10,7 @@ adminroutes.post("/get", (req, res) => {
 
     if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD) {
       const token = jwt.sign({ password }, process.env.jwt_secret);
-      return res.status(200).json({ token });
+      return res.status(200).json({  token });
     } else {
       return res.status(401).json({ message: "Invalid credentials" });
     }
