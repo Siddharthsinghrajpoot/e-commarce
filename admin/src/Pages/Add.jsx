@@ -43,31 +43,60 @@ const [images,setImages]=useState([])
  }
 
 const handleSubmit=async(e)=>{
+
+  try{
 e.preventDefault();
   const formData = new FormData();
 
   // Append text fields
   formData.append("name", Name);
-  formData.append("description", discreption);
-  formData.append("category", Category);
-  formData.append("subCategory", subCategory);
-  formData.append("price", price);
-  formData.append("size", size);
-  formData.append("bestseller", Bestseller);
+    formData.append("description", discreption);
+    formData.append("category", Category);
+    formData.append("subCategory", subCategory);
+    formData.append("price", price);
+    formData.append("size", size); // send array
+    formData.append("bestseller", Bestseller);
+
+  console.log([...formData.entries()]);
 
   // Append images individually (as image1, image2, image3...)
-  images.forEach((file, index) => {
-    formData.append(`image${index + 1}`, file);
-  });
+images.forEach((file, index) => {
+  console.log(`image${index + 1}:`, file.name);
+  formData.append(`image${index + 1}`, file);
+});
 
-const response=  await axios.post('http://localhost:5000/api/products/add',formData,{
-  headers:{token},
 
-})
+const response=  await axios.post(`${import.meta.env.VITE_API_URL}api/products/add`,formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      token: token, // or Authorization: `Bearer ${token}`
+    },
+  })
 
-console.log(response);
+if(response.data.success){
 
-toast.success("product is send");
+toast.success("product is created at database");
+
+}
+
+else{
+toast.error("product is not created at database");
+
+}
+
+
+
+  }
+
+
+  catch(error){
+    console.log(error);
+    
+toast.error("error")
+
+
+  }
+
 
 
 
