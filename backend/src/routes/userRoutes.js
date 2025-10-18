@@ -2,7 +2,6 @@ import express from "express"; // ← import express
 import User from "../models/userModel.js";
 import jwt from "jsonwebtoken"
 
-const JWT_SECRET=process.env.jwt_secret;
 const router=express.Router();
 
 router.get('/hello',(req,res)=>{
@@ -75,7 +74,7 @@ password
 if(user){
 const token=jwt.sign({
  id:user._id 
-},JWT_SECRET)
+},process.env.jwt_secret)
 res.status(200).send({
 token:token
 }

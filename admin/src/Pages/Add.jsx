@@ -64,7 +64,7 @@ images.forEach((file, index) => {
   console.log(`image${index + 1}:`, file.name);
   formData.append(`image${index + 1}`, file);
 });
-
+console.log(`${import.meta.env.VITE_API_URL}api/products/add`)
 
 const response=  await axios.post(`${import.meta.env.VITE_API_URL}api/products/add`,formData, {
     headers: {

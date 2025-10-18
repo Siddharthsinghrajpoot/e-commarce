@@ -1,9 +1,9 @@
 import React from 'react'
 import { createContext } from 'react'
-import { products}  from '../frontend_assets/assets'; 
+
 import { useState,useEffect } from 'react';
 import { toast } from 'react-toastify';
-
+import axios from "axios";
 export  const context =createContext();
 
 
@@ -15,6 +15,11 @@ const delivery_fess=10;
 const [search, setSearch]=useState('');
 const [showSearch,setShowSearch]=useState(false);
 const [cardItems,setCardItems]=useState({ });
+const [products,setProducts]=useState([]);
+const[token,setToken]=useState(' ');
+
+
+
 console.log(cardItems);
 
 
@@ -81,6 +86,8 @@ return count;
 }
 
 
+
+
 const updateQuantity=(itemId,size, quantity)=>{
 let cartData=structuredClone(cardItems);
 cartData[itemId][size]=quantity;
@@ -119,6 +126,43 @@ return totalAmount;
 }
 
 
+const getProductsdata=async()=>{
+try{
+
+  const response=await axios.get(`${import.meta.env.VITE_API_URL}api/products/listproducts`)
+  if(response.data.message){
+
+setProducts(response.data.message)
+
+  }
+
+  else{
+
+console.log("error is present");
+
+
+  }
+
+}
+
+catch(error){
+
+console.log(error);
+
+
+
+
+}
+
+
+  
+
+}
+
+useEffect(()=>{
+getProductsdata();
+
+},[])
 
 
 
@@ -128,7 +172,7 @@ return totalAmount;
 
 const value={
 products, currency, delivery_fess,
-search, setSearch, showSearch, setShowSearch,cardItems,setCardItems,addToCart,display,updateQuantity,getCartAmount
+search, setSearch, showSearch, setShowSearch,cardItems,setCardItems,addToCart,display,updateQuantity,getCartAmount,token,setToken
 }
 
 

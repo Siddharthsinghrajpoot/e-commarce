@@ -22,11 +22,17 @@ console.log("hellow");
 
 },[])
 
+const handleonRemove=(id)=>{
+
+setProducts(products.filter((item)=>item._id!==id))
+
+}
+
   return (
     <div>
 
       {
-products.map((item,index)=> <div><CardProductlist item={item} index={index} /></div> )
+products.map((item,index)=> <div><CardProductlist item={item} index={index} onRemove={handleonRemove} /></div> )
 
       }
 

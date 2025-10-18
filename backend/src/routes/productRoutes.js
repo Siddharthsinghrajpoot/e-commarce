@@ -57,18 +57,6 @@ const image4 = req.files.image4 ? req.files.image4[0] : null;
         size
       );
 
-      const repeated = await Product.findOne({
-        name,
-        description,
-        category,
-        subCategory,
-      });
-
-      if (repeated) {
-        return res.status(404).json({
-          message: ' description category or subcategory already exists',
-        });
-      }
 
       const response = await Product.create({
         name,
@@ -90,7 +78,7 @@ const image4 = req.files.image4 ? req.files.image4[0] : null;
 
       res.json({
         massage: 'error is present',
-           success:true
+           success:false
       });
     }
   }
@@ -148,14 +136,14 @@ res.status(500).json({
 
 })
 
-routerproducts.delete('/deletebyid/:id' ,adminAuth ,async(req,res)=>{
+routerproducts.delete('/deletebyid/:id' ,async(req,res)=>{
 try{
 const id=req.params.id;
 
- const response= await Product.findbyidand(id);
+ const response= await Product.findOneAndDelete(id);
 res.status(200).json({
-message:"product is deleted"
-
+message:"product is deleted",
+success:true
 })
 
 }
